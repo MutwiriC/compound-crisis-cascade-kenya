@@ -1,6 +1,11 @@
+# Data files - sourced from HDX HAPI
 data/raw/
 data/processed/
+
+# Notebook checkpoints
 .ipynb_checkpoints/
+
+# Environment
 .env
 __pycache__/
 *.pyc
