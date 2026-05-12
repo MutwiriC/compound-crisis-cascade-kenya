@@ -8,4 +8,8 @@ data/processed/
 # Environment
 .env
 __pycache__/
+*.pyclearn-env/
+outputs/
+.ipynb_checkpoints/
+__pycache__/
 *.pyc
