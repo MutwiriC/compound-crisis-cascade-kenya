@@ -20,7 +20,7 @@ The cascade exists and it's conditional.
 
 - Rainfall deficits precede real maize price spikes at a **2-3 month lag** across high-vulnerability counties
 - Price spikes precede conflict escalation at a **3-4 month lag** - Granger causality confirmed in Mandera and Turkana
-- The two-link cascade is detectable only in **7 counties with MPI >= 0.30** - it is absent in medium and low-vulnerability counties
+- The two-link cascade is detectable only in **7 counties with MPI >= 0.30**. It is absent in medium and low-vulnerability counties
 - Each drought cycle raises the real maize price floor permanently. Cumulative multi-cycle stress rather than individual events, drive the chronic vulnerability
 
 A below-normal long-rains season in March should trigger price monitoring by May-June and conflict early warning by July-August in ASAL counties.
