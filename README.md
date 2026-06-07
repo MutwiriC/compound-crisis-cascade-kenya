@@ -32,7 +32,9 @@ The cascade exists, is conditional on structural vulnerability, and does not app
 
 **Negative control:** Kiambu and Nairobi were tested as negative controls. No significant Granger results in either direction. WFP VAM does not monitor these counties because they are not food-insecure markets. The cascade signal in high-vulnerability counties is mechanism-specific, not a Kenya-wide statistical artefact.
 
-**VRI validation:** The Vulnerability Risk Index was validated against IPC Phase 3+ prevalence (2019-2025). Results reported in Notebook 05.
+**VRI validation:** The Vulnerability Risk Index was validated against IPC Phase 3+ prevalence (2019-2025). 
+VRI predicts IPC Phase 3+ outcomes: 
+Pearson r = 0.379 (p = 0.047), Spearman rho = 0.388 (p = 0.042), n = 28 counties (2019-2025).
 
 ---
 
