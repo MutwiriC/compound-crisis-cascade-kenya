@@ -1,4 +1,8 @@
-# Compound Crisis Cascade: How Climate Shocks Trigger Food Price Spikes and Conflict in Kenya's Vulnerable Counties
+# Compound Crisis Cascade: Kenya
+
+## How Climate Shocks Trigger Food Price Spikes and Conflict in Kenya's Vulnerable Counties
+
+---
 
 ## What This Project Investigates
 
@@ -8,22 +12,29 @@ The analysis window covers 19 years (2006-2025), 47 Kenyan counties, and six dat
 
 The goal is to identify the operational window between a climate shock and a protection crisis, when anticipatory humanitarian action is still possible.
 
+---
+
 ## Why It Matters
 
-Kenya loses an estimated 2-3% of GDP annually to drought-related crises.
-The data exists to predict these cascades. What is missing is a tool that reads climate, price, and conflict signals together and in sequence.
-This project builds the analytical logic for that tool.
+Kenya loses an estimated 2-3% of GDP annually to drought-related crises. The data exists to predict these cascades. What is missing is a tool that reads climate, price, and conflict signals together and in sequence. This project builds the analytical logic for that tool.
+
+---
 
 ## What This Project Found
 
-The cascade exists and it's conditional.
+The cascade exists, is conditional on structural vulnerability, and does not appear in well-integrated urban counties.
 
-- Rainfall deficits precede real maize price spikes at a **2-3 month lag** across high-vulnerability counties
-- Price spikes precede conflict escalation at a **3-4 month lag** - Granger causality confirmed in Mandera and Turkana
-- The two-link cascade is detectable only in **7 counties with MPI >= 0.30**. It is absent in medium and low-vulnerability counties
-- Each drought cycle raises the real maize price floor permanently. Cumulative multi-cycle stress rather than individual events, drive the chronic vulnerability
+- Rainfall deficits precede real maize price spikes at a 2-3 month lag across high-vulnerability counties
+- Price spikes precede conflict escalation at a 3-4 month lag. Granger temporal precedence confirmed in Marsabit (Rainfall -> Price: F=3.29, p=0.040, lag 2; Price -> Conflict: F=5.42, p=0.021, lag 1). Marginal results in Turkana (p=0.077 and p=0.073). Absent in Mandera (cross-border price dynamics suspected). Reverse direction non-significant in all counties
+- The two-link cascade is detectable only in 7 counties with MPI >= 0.30. It is absent in medium and low-vulnerability counties
+- Each drought cycle raises the real maize price floor permanently. Cumulative multi-cycle stress, rather than individual events, drives chronic vulnerability
+- A below-normal long-rains season in March should trigger price monitoring by May-June and conflict early warning by July-August in ASAL counties
 
-A below-normal long-rains season in March should trigger price monitoring by May-June and conflict early warning by July-August in ASAL counties.
+**Negative control:** Kiambu and Nairobi were tested as negative controls. No significant Granger results in either direction. WFP VAM does not monitor these counties because they are not food-insecure markets. The cascade signal in high-vulnerability counties is mechanism-specific, not a Kenya-wide statistical artefact.
+
+**VRI validation:** The Vulnerability Risk Index was validated against IPC Phase 3+ prevalence (2019-2025). Results reported in Notebook 05.
+
+---
 
 ## The 7 High-Risk Counties
 
@@ -41,10 +52,11 @@ The cascade is concentrated in Kenya's arid and semi-arid land (ASAL) counties:
 
 Geographically undifferentiated interventions will miss the cascade signal entirely.
 
+---
+
 ## Data Sources
 
-All data sourced from the HDX Humanitarian API (HDX HAPI);
-publicly available at https://data.humdata.org/dataset/hdx-hapi-ken
+All data sourced from the HDX Humanitarian API (HDX HAPI); publicly available at https://data.humdata.org/dataset/hdx-hapi-ken
 
 | File                              | Source       | Purpose                      | Coverage                        |
 | --------------------------------- | ------------ | ---------------------------- | ------------------------------- |
@@ -57,26 +69,36 @@ publicly available at https://data.humdata.org/dataset/hdx-hapi-ken
 
 To reproduce: download the files above and place them in `data/raw/`
 
+---
+
 ## Methodology
 
 1. Compute monthly rainfall anomalies against county historical baselines (CHIRPS dekadal RFQ)
 2. Deflate staple food prices to real 2010 KES using World Bank CPI
 3. Separate ACLED conflict events by type; retain political violence only (battles, violence against civilians, explosions)
-4. Exclude 2007-2008 post-election violence period (this is a political outlier unrelated to the climate cascade)
+4. Exclude 2007-2008 post-election violence period (political outlier unrelated to the climate cascade mechanism)
 5. Run Augmented Dickey-Fuller stationarity tests; difference non-stationary series before lag analysis
 6. Run cross-correlation analysis with lag windows (t+1 through t+8)
-7. Test Granger causality in both directions - forward cascade and reverse validity check
-8. Build a county-level Vulnerability Risk Index with bootstrap rank uncertainty (1,000 iterations)
+7. Test Granger temporal precedence in both directions — forward cascade and reverse validity check
+8. Run negative control analysis on Kiambu and Nairobi (low MPI, high market integration) to confirm cascade specificity
+9. Build a county-level Vulnerability Risk Index with bootstrap rank uncertainty (1,000 iterations)
+10. Validate VRI against IPC Phase 3+ prevalence (2019-2025)
+
+**Statistical note:** Approximately 90 Granger tests were run at alpha=0.05, producing 4-5 expected false positives by chance. Results are not Bonferroni-corrected (which would be overly conservative for correlated tests on related counties) but are interpreted conservatively: consistency across multiple counties is required before drawing directional inference. No result survives Bonferroni correction; the cascade interpretation rests on directional consistency and CCF pattern, not on individual p-values alone.
+
+---
 
 ## Notebook Guide
 
-| Notebook                            | What It Does                                                           | Key Output                                               |
-| ----------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------- |
-| `01_data_coverage_audit.ipynb`      | Coverage mapping, missingness audit, vulnerability tier classification | 23-county analysis scope, temporal overlap chart         |
-| `02_data_cleaning.ipynb`            | CPI deflation, conflict disaggregation, panel construction             | `02_panel_analysis.csv`                                  |
-| `03_eda.ipynb`                      | Drought event deep-dives, tier comparisons, correlation matrix         | 12 figures including cascade panels for 2011, 2017, 2022 |
-| `04_lag_correlation.ipynb`          | ADF tests, cross-correlation functions, Granger causality              | Lag structure confirmed at 2-3 and 3-4 months            |
-| `05_vulnerability_risk_index.ipynb` | Composite VRI, bootstrap uncertainty, IPC validation                   | County priority targeting table, all 47 counties         |
+| Notebook                            | What It Does                                                                                   | Key Output                                                                                                      |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `01_data_coverage_audit.ipynb`      | Coverage mapping, missingness audit, vulnerability tier classification                         | 23-county analysis scope, temporal overlap chart                                                                |
+| `02_data_cleaning.ipynb`            | CPI deflation, conflict disaggregation, panel construction                                     | `02_panel_analysis.csv`                                                                                         |
+| `03_eda.ipynb`                      | Drought event deep-dives, tier comparisons, correlation matrix                                 | 12 figures including cascade panels for 2011, 2017, 2022                                                        |
+| `04_lag_correlation.ipynb`          | ADF tests, cross-correlation functions, Granger temporal precedence, negative control analysis | Lag structure confirmed at 2-3 and 3-4 months; negative control results in `04_negative_control_comparison.csv` |
+| `05_vulnerability_risk_index.ipynb` | Composite VRI, bootstrap uncertainty, IPC validation                                           | County priority targeting table, all 47 counties                                                                |
+
+---
 
 ## Project Structure
 
@@ -91,20 +113,23 @@ compound-crisis-cascade-kenya/
 │
 ├── outputs/
 │   ├── figures/      # All charts (PNG, 150 DPI)
-│   └── tables/       # Summary CSVs
+│   └── tables/       # Summary CSVs including Granger results and negative control comparison
 │
 └── README.md
 ```
 
+---
+
 ## Limitations
 
-- Food price data has no WFP VAM coverage post-2021 for most ASAL counties. The 2022 drought window shows rainfall and conflict but not price transmission
-- MPI is from the 2022 survey, which post-dates the 2009-2020 analysis window; county poverty rankings are assumed stable
-- Granger causality confirms predictive precedence, not structural causation — the household-level mechanism is not resolved by this analysis
-- Food price imputed for 38 counties using former-province medians; imputed values flagged throughout
+**Predictive precedence, not structural causation.** Granger tests confirm that lagged rainfall deficits improve prediction of price changes, and lagged price changes improve prediction of conflict events. This is temporal precedence, not structural causation. Unmeasured confounders — governance quality, humanitarian aid flows, road access, cross-border trade — may independently drive both prices and conflict. The household-level behavioural mechanism (how rising prices change conflict participation decisions) is not resolved by this aggregate analysis.
 
-## Author
+**Food price data gap from 2021.** WFP VAM price coverage ends 2020-2021 for most ASAL counties. The 2022 La Nina drought window shows clear rainfall deficits and conflict escalation but price transmission cannot be confirmed for that event. The primary Granger analysis window is therefore 2006-2020.
 
-Christine Mutwiri — Data Scientist | Nairobi, Kenya  
-Building at the intersection of humanitarian data, anticipatory action, and behavioural data science.  
-[LinkedIn](https://www.linkedin.com/in/christinekmutwiri/)
+**MPI post-dates the analysis window.** The Oxford OPHI MPI data is from the 2022 survey, which post-dates the 2009-2020 analysis window. County poverty rankings are assumed relatively stable over this period. This is a reasonable assumption for structural deprivation measures but is acknowledged as an approximation.
+
+**Food price imputed for 38 counties.** WFP VAM directly monitors 9 counties. The remaining 38 counties use former-province median imputation, with a Kenya-wide median fallback. Imputed values are flagged throughout the analysis and excluded from the primary Granger tests, which use only directly monitored counties.
+
+**Granger analysis restricted to three counties.** Mandera, Turkana, and Marsabit are the only counties with sufficient contiguous maize price data (minimum 36 months) for time-series analysis. Results do not generalise to all seven high-vulnerability counties.
+
+**Negative control is data-limited.** Kiambu and Nairobi lack WFP VAM price monitoring, which prevented formal Granger testing on control counties. The absence of price monitoring is itself evidence of lower food security risk in those counties, but a formal statistical rejection of the cascade in control counties was not possible with available data.
