@@ -22,7 +22,7 @@ Kenya loses an estimated 2-3% of GDP annually to drought-related crises. The dat
 
 ## Policy Brief
 
-The findings are summarised for decision-makers in a two-page policy brief prepared for Kenya's National Drought Management Authority (NDMA): **[Anticipatory Action for Kenya's Compound Climate-Food-Conflict Crisis](policy-brief/NDMA_Policy_Brief_Mutwiri_2026.pdf)** (PDF, October 2026).
+The findings are summarised for decision-makers in a three-page policy brief prepared for Kenya's National Drought Management Authority (NDMA): **[Anticipatory Action for Kenya's Compound Climate-Food-Conflict Crisis](policy-brief/NDMA_Policy_Brief_Mutwiri_2026.pdf)** (PDF, October 2026).
 
 ---
 
